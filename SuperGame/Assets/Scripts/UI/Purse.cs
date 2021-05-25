@@ -6,12 +6,10 @@ using TMPro;
 
 public class Purse : MonoBehaviour
 {
-    [SerializeField] private GameObject _hero;
     [SerializeField] private TMP_Text _text;
 
-    private void Update()
+    public void ShowPurse(int coin)
     {
-        _text.text = _hero.GetComponent<HeroLife>().Coins.ToString();
-        Debug.Log($"{_hero.GetComponent<HeroLife>().Coins}");
+        _text.text = coin.ToString();
     }
 }

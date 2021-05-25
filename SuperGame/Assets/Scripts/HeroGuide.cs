@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeroLife : MonoBehaviour
+public class HeroGuide : MonoBehaviour
 {
     [SerializeField] private float _speed = 6;
     [SerializeField] private float _jumpForce = 3;
+    [SerializeField] private GameObject _purse;
 
-    public int Coins { get; private set; } = 0;
-
+    private int _coins;
     private bool _facingRight = true;
     private Rigidbody2D _hero;
     private Animator _animator;
@@ -76,8 +76,10 @@ public class HeroLife : MonoBehaviour
         }
         else if (collision.gameObject.GetComponent<Coin>() != null)
         {
-            Coins++;
+            _coins++;
             Destroy(collision.gameObject);
+
+            _purse.GetComponent<Purse>().ShowPurse(_coins);
         }
     }
 }
