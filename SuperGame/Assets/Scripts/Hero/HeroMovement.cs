@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeroGuide : MonoBehaviour
+public class HeroMovement : MonoBehaviour
 {
     [SerializeField] private float _speed = 6;
     [SerializeField] private float _jumpForce = 3;
-    [SerializeField] private GameObject _purse;
 
-    private int _coins;
     private bool _facingRight = true;
     private Rigidbody2D _hero;
     private Animator _animator;
@@ -65,21 +63,5 @@ public class HeroGuide : MonoBehaviour
     private void TurnOnRun(float speed)
     {
         _animator.SetFloat("Speed", speed);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.GetComponent<EnemySecurity>() != null)
-        {
-            Application.Quit();
-            Time.timeScale = 0;
-        }
-        else if (collision.gameObject.GetComponent<Coin>() != null)
-        {
-            _coins++;
-            Destroy(collision.gameObject);
-
-            _purse.GetComponent<Purse>().ShowPurse(_coins);
-        }
     }
 }
