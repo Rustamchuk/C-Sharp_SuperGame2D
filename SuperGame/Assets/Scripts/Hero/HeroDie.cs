@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HeroDie : MonoBehaviour
 {
@@ -8,8 +9,7 @@ public class HeroDie : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<EnemySecurity>() != null)
         {
-            Application.Quit();
-            Time.timeScale = 0;
+            SceneManager.LoadScene(1);
         }
     }
 }
