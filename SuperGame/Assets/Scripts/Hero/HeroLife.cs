@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class HeroLife : MonoBehaviour
 {
-    [SerializeField] private Slider _healthBar;
     [SerializeField] private int _maxHealth;
 
     private int _currentHealth;
+
+    public ChangeBarEvent ChangeBarEvent;
 
     private void Start()
     {
@@ -21,7 +23,7 @@ public class HeroLife : MonoBehaviour
         if (_currentHealth + value <= _maxHealth)
         {
             _currentHealth += value;
-            _healthBar.GetComponent<Bar>().ChangeBar(value);
+            ChangeBarEvent.Invoke(value);
         }
 
         if (_currentHealth <= 0)
@@ -36,3 +38,6 @@ public class HeroLife : MonoBehaviour
         }
     }
 }
+
+[System.Serializable]
+public class ChangeBarEvent : UnityEvent<int> { }

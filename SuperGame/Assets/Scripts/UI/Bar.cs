@@ -9,23 +9,29 @@ public class Bar : MonoBehaviour
     [SerializeField] private float _changeSpeed;
 
     private Slider _bar;
-    private float _currentValue;
+    private float _newValue;
 
     private void Start()
     {
         _bar = GetComponent<Slider>();
         _bar.value = 1;
-        _currentValue = _bar.value;
     }
 
-    private void Update()
+    public void StartChangeBar(int value)
     {
-        if (_currentValue != _bar.value)
-            _bar.value = Mathf.MoveTowards(_bar.value, _currentValue, _changeSpeed * Time.deltaTime);
+        _newValue = _bar.value + (float)value / 100;
+
+        StopAllCoroutines();
+        StartCoroutine(ChangeBar(_newValue));
     }
 
-    public void ChangeBar(int value)
+    private IEnumerator ChangeBar(float value)
     {
-        _currentValue = _bar.value + (float)value / 100;
+        while (_bar.value != _newValue)
+        {
+            _bar.value = Mathf.MoveTowards(_bar.value, _newValue, _changeSpeed * Time.deltaTime);
+
+            yield return null;
+        }
     }
 }
