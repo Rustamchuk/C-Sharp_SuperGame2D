@@ -4,32 +4,33 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
-public class Bar : MonoBehaviour
+public class Counter : MonoBehaviour
 {
     [SerializeField] private float _changeSpeed;
 
-    private Slider _bar;
+    private Slider _counter;
     private float _newValue;
 
     private void Start()
     {
-        _bar = GetComponent<Slider>();
-        _bar.value = 1;
+        _counter = GetComponent<Slider>();
+        _counter.value = 1;
     }
 
     public void StartChangeBar(int value)
     {
-        _newValue = _bar.value + (float)value / 100;
+        _newValue = _counter.value + (float)value / 100;
 
-        StopAllCoroutines();
         StartCoroutine(ChangeBar(_newValue));
+
+        StopCoroutine(ChangeBar(_newValue));
     }
 
     private IEnumerator ChangeBar(float value)
     {
-        while (_bar.value != _newValue)
+        while (_counter.value != _newValue)
         {
-            _bar.value = Mathf.MoveTowards(_bar.value, _newValue, _changeSpeed * Time.deltaTime);
+            _counter.value = Mathf.MoveTowards(_counter.value, _newValue, _changeSpeed * Time.deltaTime);
 
             yield return null;
         }
