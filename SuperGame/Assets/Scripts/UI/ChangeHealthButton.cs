@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class ChangeHealthButton : MonoBehaviour
 {
-    [SerializeField] private GameObject _hero;
+    [SerializeField] private HeroLife _hero;
 
     public void ChangeValue(int value)
     {
-        _hero.GetComponent<HeroLife>().ChangeHealth(value);
+        _hero.ChangeHealth(value);
     }
 }

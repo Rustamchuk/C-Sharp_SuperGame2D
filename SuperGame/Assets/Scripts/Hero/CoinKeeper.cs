@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CoinKeeper : MonoBehaviour
 {
-    [SerializeField] private GameObject _purse;
+    [SerializeField] private Purse _purse;
 
     private int _coins;
 
@@ -15,7 +15,7 @@ public class CoinKeeper : MonoBehaviour
             _coins++;
             Destroy(collision.gameObject);
 
-            _purse.GetComponent<Purse>().ShowPurse(_coins);
+            _purse.ShowPurse(_coins);
         }
     }
 }

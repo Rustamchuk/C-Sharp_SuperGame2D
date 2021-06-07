@@ -10,7 +10,6 @@ public class HeroLife : MonoBehaviour
     [SerializeField] private int _maxHealth;
 
     private int _currentHealth;
-    private EnemySecurity _enemy;
 
     public ChangeBarEvent ChangeBarEvent;
 
@@ -33,11 +32,9 @@ public class HeroLife : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _enemy = collision.GetComponent<EnemySecurity>();
-
-        if (_enemy != null)
+        if (TryGetComponent(out EnemySecurity enemy))
         {
-            ChangeHealth(-1 * _enemy.Damage);
+            ChangeHealth(-1 * enemy.Damage);
         }
     }
 }
