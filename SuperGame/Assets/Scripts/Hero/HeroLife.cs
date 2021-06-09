@@ -11,7 +11,7 @@ public class HeroLife : MonoBehaviour
 
     private int _currentHealth;
 
-    public ChangeBarEvent ChangeBarEvent;
+    public GetDamage GetDamageEvent;
 
     private void Start()
     {
@@ -23,7 +23,7 @@ public class HeroLife : MonoBehaviour
         if (_currentHealth + value <= _maxHealth)
         {
             _currentHealth += value;
-            ChangeBarEvent.Invoke(value);
+            GetDamageEvent.Invoke(value);
         }
 
         if (_currentHealth <= 0)
@@ -32,4 +32,4 @@ public class HeroLife : MonoBehaviour
 }
 
 [System.Serializable]
-public class ChangeBarEvent : UnityEvent<int> { }
+public class GetDamage : UnityEvent<int> { }
