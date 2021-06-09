@@ -29,14 +29,6 @@ public class HeroLife : MonoBehaviour
         if (_currentHealth <= 0)
             SceneManager.LoadScene(1);
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (TryGetComponent(out EnemySecurity enemy))
-        {
-            ChangeHealth(-1 * enemy.Damage);
-        }
-    }
 }
 
 [System.Serializable]
