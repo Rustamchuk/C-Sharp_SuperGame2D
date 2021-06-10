@@ -10,7 +10,7 @@ public class EnemySecurity : MonoBehaviour
     [SerializeField] private float _speed = 1;
     [SerializeField] private int _damage;
 
-    public AttackHero AttackHeroEvent;
+    public AttackHeroEvent AttackHero;
 
     private void Start()
     {
@@ -21,9 +21,9 @@ public class EnemySecurity : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<HeroLife>() != null)
-            AttackHeroEvent.Invoke(-1 * _damage);
+            AttackHero.Invoke(-1 * _damage);
     }
 
     [System.Serializable]
-    public class AttackHero : UnityEvent<int> { }
+    public class AttackHeroEvent : UnityEvent<int> { }
 }
